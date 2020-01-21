@@ -5,11 +5,11 @@ import BasicText from './BasicText'
 interface Props {
   label: string
   onPress: () => void
-  loading: boolean
+  loading?: boolean
 
   labelColor: string
   bgColor: string
-  width: number
+  width?: number
 
   style?: StyleProp<ViewStyle>
 }

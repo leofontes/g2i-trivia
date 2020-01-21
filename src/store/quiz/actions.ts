@@ -2,7 +2,8 @@ import {QuizErrorFetch, QuizLoading, QuizSuccessFetch} from './types'
 import Question from '../../model/question'
 import {AppThunkAction} from '../../utils/store'
 import {get, QueryParams} from '../../utils/api'
-import QuizResult from '../../model/QuizResult'
+import QuizFetchResult from '../../model/QuizFetchResult'
+import {decodeHTMLEntities} from '../../utils/strings'
 
 export function quizLoading(): QuizLoading {
   return {
@@ -39,8 +40,12 @@ export function loadQuiz(
         type,
       }
 
-      const response: QuizResult = await get(queryParams)
-      dispatch(quizSuccessFetch(response.results))
+      const response: QuizFetchResult = await get(queryParams)
+      const results = response.results.map(result => ({
+        ...result,
+        question: decodeHTMLEntities(result.question),
+      }))
+      dispatch(quizSuccessFetch(results))
     } catch (err) {
       dispatch(quizErrorFetch())
     }

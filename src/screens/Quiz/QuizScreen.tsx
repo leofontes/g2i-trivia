@@ -1,13 +1,68 @@
-import React from 'react'
+import React, {useState} from 'react'
 import SafeArea from '../../components/basic/SafeArea'
-import {Text, View} from 'react-native'
+import {ScrollView, StyleSheet, View} from 'react-native'
+import {useSelector} from 'react-redux'
+import {ApplicationState} from '../../utils/store'
+import QuestionBooleanCard from '../../components/compound/QuestionBooleanCard'
+import BasicText from '../../components/basic/BasicText'
+import Colors from '../../utils/colors'
 
-export default function QuizScreen() {
+export default () => {
+  const {questions} = useSelector((state: ApplicationState) => state.quiz)
+  const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0)
+  const currentQuestion = questions[currentQuestionNumber]
+
+  const onTruePress = () => {
+    setCurrentQuestionNumber(currentQuestionNumber + 1)
+  }
+
+  const onFalsePress = () => {
+    setCurrentQuestionNumber(currentQuestionNumber + 1)
+  }
+
   return (
     <SafeArea>
-      <View>
-        <Text>Tela de quiz</Text>
-      </View>
+      <ScrollView contentContainerStyle={styles.scroll}>
+        <View style={styles.categoryContainer}>
+          <BasicText center color={Colors.white}>
+            Category
+          </BasicText>
+          <BasicText center size={22}>
+            {currentQuestion.category}
+          </BasicText>
+        </View>
+        <View style={styles.mainContent}>
+          <QuestionBooleanCard
+            question={currentQuestion}
+            propStyles={styles.questionCard}
+            onTruePress={onTruePress}
+            onFalsePress={onFalsePress}
+          />
+          <BasicText center size={18}>{`${currentQuestionNumber + 1} of ${
+            questions.length
+          }`}</BasicText>
+        </View>
+      </ScrollView>
     </SafeArea>
   )
 }
+
+const styles = StyleSheet.create({
+  scroll: {
+    flex: 1,
+  },
+
+  categoryContainer: {
+    backgroundColor: Colors.blue,
+    justifyContent: 'center',
+    paddingVertical: 8,
+  },
+
+  mainContent: {
+    justifyContent: 'center',
+    flexGrow: 2,
+  },
+  questionCard: {
+    margin: 16,
+  },
+})
