@@ -10,13 +10,16 @@ import Colors from '../../utils/colors'
 export default () => {
   const {questions} = useSelector((state: ApplicationState) => state.quiz)
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0)
+  const [answers, setAnswers] = useState<Boolean[]>([])
   const currentQuestion = questions[currentQuestionNumber]
 
   const onTruePress = () => {
+    setAnswers([...answers, true])
     setCurrentQuestionNumber(currentQuestionNumber + 1)
   }
 
   const onFalsePress = () => {
+    setAnswers([...answers, false])
     setCurrentQuestionNumber(currentQuestionNumber + 1)
   }
 

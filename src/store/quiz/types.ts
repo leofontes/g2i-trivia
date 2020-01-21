@@ -7,19 +7,30 @@ export interface QuizState {
   status: Status
 }
 
-export interface QuizLoading extends Action {
+export interface QuizLoadingAction extends Action {
   type: 'quiz/LOADING'
 }
 
-export interface QuizSuccessFetch extends Action {
+export interface QuizSuccessFetchAction extends Action {
   type: 'quiz/SUCCESS_FETCH'
   payload: {
     questions: Question[]
   }
 }
 
-export interface QuizErrorFetch extends Action {
+export interface QuizErrorFetchAction extends Action {
   type: 'quiz/ERROR_FETCH'
 }
 
-export type QuizAction = QuizLoading | QuizSuccessFetch | QuizErrorFetch
+export interface QuizSetAnswersAction extends Action {
+  type: 'quiz/SET_ANSWERS'
+  payload: {
+    answers: Boolean[]
+  }
+}
+
+export type QuizAction =
+  | QuizLoadingAction
+  | QuizSuccessFetchAction
+  | QuizErrorFetchAction
+  | QuizSetAnswersAction

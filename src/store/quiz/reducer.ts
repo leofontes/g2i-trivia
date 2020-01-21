@@ -29,6 +29,12 @@ export default function quiz(
         questions: [],
       }
 
+    case 'quiz/SET_ANSWERS':
+      return {
+        ...state,
+        questions
+      }
+
     default:
       return state
   }

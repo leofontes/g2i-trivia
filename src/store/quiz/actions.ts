@@ -1,17 +1,19 @@
-import {QuizErrorFetch, QuizLoading, QuizSuccessFetch} from './types'
+import {QuizErrorFetchAction, QuizLoadingAction, QuizSetAnswersAction, QuizSuccessFetchAction} from './types'
 import Question from '../../model/question'
 import {AppThunkAction} from '../../utils/store'
 import {get, QueryParams} from '../../utils/api'
 import QuizFetchResult from '../../model/QuizFetchResult'
 import {decodeHTMLEntities} from '../../utils/strings'
 
-export function quizLoading(): QuizLoading {
+export function quizLoadingAction(): QuizLoadingAction {
   return {
     type: 'quiz/LOADING',
   }
 }
 
-export function quizSuccessFetch(questions: Question[]): QuizSuccessFetch {
+export function quizSuccessFetchAction(
+  questions: Question[],
+): QuizSuccessFetchAction {
   return {
     type: 'quiz/SUCCESS_FETCH',
     payload: {
@@ -20,9 +22,18 @@ export function quizSuccessFetch(questions: Question[]): QuizSuccessFetch {
   }
 }
 
-export function quizErrorFetch(): QuizErrorFetch {
+export function quizErrorFetchAction(): QuizErrorFetchAction {
   return {
     type: 'quiz/ERROR_FETCH',
+  }
+}
+
+export function quizSetAnswersAction(answers: Boolean[]): QuizSetAnswersAction {
+  return {
+    type: 'quiz/SET_ANSWERS',
+    payload: {
+      answers,
+    },
   }
 }
 
@@ -33,7 +44,7 @@ export function loadQuiz(
 ): AppThunkAction {
   return async dispatch => {
     try {
-      dispatch(quizLoading())
+      dispatch(quizLoadingAction())
       const queryParams: QueryParams = {
         amount,
         difficulty,
@@ -45,9 +56,9 @@ export function loadQuiz(
         ...result,
         question: decodeHTMLEntities(result.question),
       }))
-      dispatch(quizSuccessFetch(results))
+      dispatch(quizSuccessFetchAction(results))
     } catch (err) {
-      dispatch(quizErrorFetch())
+      dispatch(quizErrorFetchAction())
     }
   }
 }
