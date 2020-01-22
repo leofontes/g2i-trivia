@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   regular: {fontFamily: 'SourceSansPro-Regular'},
   extraLight: {fontFamily: 'SourceSansPro-ExtraLight'},
   light: {fontFamily: 'SourceSansPro-Light'},
-  medium: {fontFamily: 'SourceSansPro-Medium'},
+  medium: {fontFamily: 'SourceSansPro-SemiBold'},
   bold: {fontFamily: 'SourceSansPro-Bold'},
   black: {fontFamily: 'SourceSansPro-Black'},
 })

@@ -5,8 +5,6 @@ export function mapAnswersToQuestions(
   questions: Question[],
   answers: Boolean[],
 ): Question[] {
-  console.log(questions)
-  console.log(answers)
 
   return questions.map((question, index) => {
     const correctAnswer = question.correct_answer === 'True'

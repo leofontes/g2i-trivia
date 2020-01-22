@@ -43,7 +43,7 @@ export default () => {
           label="BEGIN"
           onPress={onBeginPress}
           labelColor={Colors.white}
-          bgColor={Colors.purple}
+          bgColor={Colors.blueAqua}
           width={200}
           style={styles.buttonBegin}
           loading={status === 'loading'}

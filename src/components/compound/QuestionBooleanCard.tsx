@@ -22,7 +22,7 @@ const QuestionBooleanCard: FunctionComponent<Props> = ({
 }) => {
   return (
     <CardView style={[styles.card, propStyles]}>
-      <BasicText color={Colors.black} center size={20}>
+      <BasicText color={Colors.black} center size={26}>
         {question.question}
       </BasicText>
 
@@ -33,14 +33,14 @@ const QuestionBooleanCard: FunctionComponent<Props> = ({
           label="FALSE"
           onPress={onFalsePress}
           labelColor={Colors.white}
-          bgColor={Colors.grayA}
+          bgColor={Colors.pink}
           style={styles.button}
         />
         <Button
           label="TRUE"
           onPress={onTruePress}
-          labelColor={Colors.grayC}
-          bgColor={Colors.lightPurple}
+          labelColor={Colors.white}
+          bgColor={Colors.yellowLime}
           style={styles.button}
         />
       </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 
   separator: {
-    backgroundColor: Colors.purple,
+    backgroundColor: Colors.black,
     height: 1,
     marginVertical: 16,
   },

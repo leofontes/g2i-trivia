@@ -41,10 +41,10 @@ export default () => {
     <SafeArea>
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.categoryContainer}>
-          <BasicText center color={Colors.white}>
+          <BasicText center color={Colors.blueAqua} size={18}>
             Category
           </BasicText>
-          <BasicText center size={22}>
+          <BasicText center size={22} medium color={Colors.white}>
             {currentQuestion.category}
           </BasicText>
         </View>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
 
   categoryContainer: {
-    backgroundColor: Colors.lightPurple,
+    backgroundColor: Colors.black,
     justifyContent: 'center',
     paddingVertical: 8,
   },

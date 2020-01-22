@@ -22,7 +22,7 @@ const ResultList: FunctionComponent<Props> = ({questions}) => {
         style={[
           styles.container,
           {
-            backgroundColor: isAnswerCorrect ? Colors.green : Colors.red,
+            backgroundColor: isAnswerCorrect ? Colors.yellowLime : Colors.pink,
           },
         ]}>
         <View style={styles.iconContainer}>

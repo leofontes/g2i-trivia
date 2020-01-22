@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
   containerPlatform: Platform.select({
     ios: {
       shadowColor: '#000000',
-      shadowOpacity: 0.1,
-      shadowRadius: 2,
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
       shadowOffset: {width: 0, height: 4},
     },
     android: {},

@@ -17,6 +17,7 @@
     "html-entities": "^1.2.1",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-confetti-cannon": "^1.1.6",
     "react-native-gesture-handler": "^1.5.3",
     "react-native-safe-area-context": "^0.6.2",
     "react-navigation": "^4.0.10",

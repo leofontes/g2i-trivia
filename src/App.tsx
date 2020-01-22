@@ -17,6 +17,9 @@ const Stack = createStackNavigator(
   },
   {
     headerMode: 'none',
+    navigationOptions: {
+      gesturesEnabled: false,
+    },
   },
 )
 const Container = createAppContainer(Stack)
