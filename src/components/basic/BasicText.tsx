@@ -10,6 +10,39 @@ interface Props extends TextProps {
   justify?: boolean
   left?: boolean
   right?: boolean
+
+  extraLight?: boolean
+  light?: boolean
+  regular?: boolean
+  medium?: boolean
+  bold?: boolean
+  black?: boolean
+}
+
+function resolveFont(props: Props): TextStyle {
+  const {extraLight, light, regular, medium, bold, black} = props
+
+  if (regular) {
+    return styles.regular
+  }
+  if (extraLight) {
+    return styles.extraLight
+  }
+  if (light) {
+    return styles.light
+  }
+  if (medium) {
+    return styles.medium
+  }
+  if (bold) {
+    return styles.bold
+  }
+  if (black) {
+    return styles.black
+  }
+
+  // console.warn('Font family missing')
+  return styles.regular
 }
 
 function resolveAlignment(props: Props): TextStyle {
@@ -38,6 +71,12 @@ const BasicText: FunctionComponent<Props> = ({
   justify,
   left,
   right,
+  extraLight,
+  light,
+  regular,
+  medium,
+  bold,
+  black,
 }) => (
   <Text
     style={[
@@ -49,6 +88,7 @@ const BasicText: FunctionComponent<Props> = ({
         color,
       },
       resolveAlignment({center, justify, right, left}),
+      resolveFont({extraLight, light, regular, medium, bold, black}),
     ]}>
     {children}
   </Text>
@@ -63,6 +103,12 @@ const styles = StyleSheet.create({
   txtJustify: {textAlign: 'justify'},
   txtLeft: {textAlign: 'left'},
   txtRight: {textAlign: 'right'},
+  regular: {fontFamily: 'SourceSansPro-Regular'},
+  extraLight: {fontFamily: 'SourceSansPro-ExtraLight'},
+  light: {fontFamily: 'SourceSansPro-Light'},
+  medium: {fontFamily: 'SourceSansPro-Medium'},
+  bold: {fontFamily: 'SourceSansPro-Bold'},
+  black: {fontFamily: 'SourceSansPro-Black'},
 })
 
 export default BasicText

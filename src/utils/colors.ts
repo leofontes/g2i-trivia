@@ -1,9 +1,13 @@
 const Colors = {
   black: '#1b262c',
-  blue: '#3282b8',
-  blueDark: '#0f4c75',
-  blueLight: '#bbe1fa',
+  purple: '#9656a1',
+  lightPurple: '#c2b0c9',
+  grayA: '#aaaaaa',
+  grayC: '#cccccc',
+  green: '#21bf73',
+  red: '#fd5e53',
   white: '#FFF',
+  whiteCream: '#f4efd3',
 }
 
 export default Colors

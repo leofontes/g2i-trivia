@@ -1,5 +1,6 @@
 import {QuizState} from './types'
 import {AppBasicAction} from '../../utils/store'
+import {mapAnswersToQuestions} from '../../business/QuizBusiness'
 
 const initialState: QuizState = {
   questions: [],
@@ -32,7 +33,10 @@ export default function quiz(
     case 'quiz/SET_ANSWERS':
       return {
         ...state,
-        questions
+        questions: mapAnswersToQuestions(
+          state.questions,
+          action.payload.answers,
+        ),
       }
 
     default:

@@ -1,3 +1,5 @@
+import {UserAnswer} from './UserAnswer'
+
 export default interface Question {
   category: string
   type: string
@@ -5,5 +7,5 @@ export default interface Question {
   question: string
   correct_answer: string
   incorrect_answers: string[]
-
+  user_answer: UserAnswer | undefined
 }

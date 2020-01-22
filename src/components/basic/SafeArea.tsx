@@ -10,7 +10,7 @@ export default SafeArea
 
 const styles = StyleSheet.create({
   safearea: {
-    backgroundColor: Colors.blueLight,
+    backgroundColor: Colors.grayC,
     flex: 1,
   },
 })

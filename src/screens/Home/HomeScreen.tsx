@@ -42,8 +42,8 @@ export default () => {
         <Button
           label="BEGIN"
           onPress={onBeginPress}
-          labelColor={Colors.black}
-          bgColor={Colors.blue}
+          labelColor={Colors.white}
+          bgColor={Colors.purple}
           width={200}
           style={styles.buttonBegin}
           loading={status === 'loading'}

@@ -1,4 +1,9 @@
-import {QuizErrorFetchAction, QuizLoadingAction, QuizSetAnswersAction, QuizSuccessFetchAction} from './types'
+import {
+  QuizErrorFetchAction,
+  QuizLoadingAction,
+  QuizSetAnswersAction,
+  QuizSuccessFetchAction,
+} from './types'
 import Question from '../../model/question'
 import {AppThunkAction} from '../../utils/store'
 import {get, QueryParams} from '../../utils/api'

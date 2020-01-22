@@ -25,7 +25,7 @@ export default function Button(props: Props) {
       ]}>
       <View>
         {!props.loading && (
-          <BasicText color={props.labelColor} center>
+          <BasicText color={props.labelColor} center bold>
             {props.label}
           </BasicText>
         )}

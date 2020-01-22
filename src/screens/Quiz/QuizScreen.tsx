@@ -1,26 +1,40 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import SafeArea from '../../components/basic/SafeArea'
 import {ScrollView, StyleSheet, View} from 'react-native'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {ApplicationState} from '../../utils/store'
 import QuestionBooleanCard from '../../components/compound/QuestionBooleanCard'
 import BasicText from '../../components/basic/BasicText'
 import Colors from '../../utils/colors'
+import {useNavigation} from 'react-navigation-hooks'
+import {quizSetAnswersAction} from '../../store/quiz/actions'
 
 export default () => {
   const {questions} = useSelector((state: ApplicationState) => state.quiz)
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0)
   const [answers, setAnswers] = useState<Boolean[]>([])
   const currentQuestion = questions[currentQuestionNumber]
+  const {navigate} = useNavigation()
+  const dispatch = useDispatch()
 
   const onTruePress = () => {
-    setAnswers([...answers, true])
-    setCurrentQuestionNumber(currentQuestionNumber + 1)
+    handleAnswer(true)
   }
 
   const onFalsePress = () => {
-    setAnswers([...answers, false])
-    setCurrentQuestionNumber(currentQuestionNumber + 1)
+    handleAnswer(false)
+  }
+
+  const handleAnswer = (answer: boolean) => {
+    setAnswers([...answers, answer])
+    const nextQuestionNumber = currentQuestionNumber + 1
+
+    if (nextQuestionNumber < questions.length) {
+      setCurrentQuestionNumber(nextQuestionNumber)
+    } else {
+      dispatch(quizSetAnswersAction([...answers, answer]))
+      navigate('Result')
+    }
   }
 
   return (
@@ -56,7 +70,7 @@ const styles = StyleSheet.create({
   },
 
   categoryContainer: {
-    backgroundColor: Colors.blue,
+    backgroundColor: Colors.lightPurple,
     justifyContent: 'center',
     paddingVertical: 8,
   },

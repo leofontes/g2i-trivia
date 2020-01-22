@@ -5,3 +5,7 @@ export function decodeHTMLEntities(raw: string) {
 
   return entities.decode(raw)
 }
+
+export function capitalize(raw: string) {
+  return raw.replace(/^\w/, c => c.toUpperCase())
+}
