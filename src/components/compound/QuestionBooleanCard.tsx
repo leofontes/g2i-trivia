@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react'
-import {StyleSheet, View, ViewStyle} from 'react-native'
+import {StyleSheet, View, ViewStyle, Animated} from 'react-native'
 import CardView from '../basic/CardView'
 import Question from '../../model/Question'
 import Colors from '../../utils/colors'
@@ -12,6 +12,8 @@ interface Props {
 
   onTruePress: () => void
   onFalsePress: () => void
+
+  
 }
 
 const QuestionBooleanCard: FunctionComponent<Props> = ({
@@ -22,9 +24,11 @@ const QuestionBooleanCard: FunctionComponent<Props> = ({
 }) => {
   return (
     <CardView style={[styles.card, propStyles]}>
-      <BasicText color={Colors.black} center size={26}>
-        {question.question}
-      </BasicText>
+      <Animated.View style={}>
+        <BasicText color={Colors.black} center size={26}>
+          {question.question}
+        </BasicText>
+      </Animated.View>
 
       <View style={styles.separator} />
 
