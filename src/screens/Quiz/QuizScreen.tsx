@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import SafeArea from '../../components/basic/SafeArea'
-import {ScrollView, StyleSheet, View} from 'react-native'
+import {Animated, ScrollView, StyleSheet, View} from 'react-native'
 import {useDispatch, useSelector} from 'react-redux'
 import {ApplicationState} from '../../utils/store'
 import QuestionBooleanCard from '../../components/compound/QuestionBooleanCard'
@@ -12,6 +12,10 @@ import {quizSetAnswersAction} from '../../store/quiz/actions'
 export default () => {
   const {questions} = useSelector((state: ApplicationState) => state.quiz)
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState(0)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [questionLabelOpacity, setQuestionLabelOpacity] = useState<
+    Animated.AnimatedValue
+  >(new Animated.Value(1))
   const [answers, setAnswers] = useState<Boolean[]>([])
   const currentQuestion = questions[currentQuestionNumber]
   const {navigate} = useNavigation()
@@ -30,7 +34,18 @@ export default () => {
     const nextQuestionNumber = currentQuestionNumber + 1
 
     if (nextQuestionNumber < questions.length) {
-      setCurrentQuestionNumber(nextQuestionNumber)
+      Animated.timing(questionLabelOpacity, {
+        toValue: 0,
+        duration: 250,
+        useNativeDriver: true,
+      }).start(() => {
+        setCurrentQuestionNumber(nextQuestionNumber)
+        Animated.timing(questionLabelOpacity, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }).start()
+      })
     } else {
       dispatch(quizSetAnswersAction([...answers, answer]))
       navigate('Result')
@@ -54,6 +69,7 @@ export default () => {
             propStyles={styles.questionCard}
             onTruePress={onTruePress}
             onFalsePress={onFalsePress}
+            questionOpacity={questionLabelOpacity}
           />
           <BasicText center size={18}>{`${currentQuestionNumber + 1} of ${
             questions.length

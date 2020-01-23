@@ -30,13 +30,23 @@ export default () => {
     <SafeArea>
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.content}>
-          <View>
-            {/* TODO add bold */}
-            <BasicText center>Welcome to the Trivia Challenge!</BasicText>
-            <BasicText center>
-              You will be presented with 10 True or False questions.!
+          <View style={styles.labelsContainer}>
+            <BasicText center black size={28} color={Colors.blueAqua}>
+              Welcome to the Trivia Challenge!
             </BasicText>
-            <BasicText center>Can you score 100%?</BasicText>
+            <View style={styles.middleLabelContainer}>
+              <BasicText center regular size={32} color={Colors.pink}>
+                You will be presented with 10 True or False questions.
+              </BasicText>
+            </View>
+            <BasicText
+              center
+              regular
+              size={32}
+              color={Colors.blueAqua}
+              style={styles.questionLabel}>
+              Can you score 100%?
+            </BasicText>
           </View>
         </View>
         <Button
@@ -57,10 +67,24 @@ const styles = StyleSheet.create({
   scroll: {
     flex: 1,
   },
+
   content: {
     alignItems: 'center',
     flexGrow: 2,
     justifyContent: 'center',
+  },
+
+  labelsContainer: {
+    paddingHorizontal: 50,
+  },
+  middleLabelContainer: {
+    paddingVertical: 25,
+    marginBottom: 50,
+    marginTop: 50,
+  },
+
+  questionLabel: {
+    textDecorationLine: 'underline',
   },
 
   buttonBegin: {

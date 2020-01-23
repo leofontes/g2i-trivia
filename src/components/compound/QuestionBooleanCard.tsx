@@ -9,11 +9,10 @@ import Button from '../basic/Button'
 interface Props {
   question: Question
   propStyles: ViewStyle
+  questionOpacity: Animated.AnimatedValue
 
   onTruePress: () => void
   onFalsePress: () => void
-
-  
 }
 
 const QuestionBooleanCard: FunctionComponent<Props> = ({
@@ -21,10 +20,11 @@ const QuestionBooleanCard: FunctionComponent<Props> = ({
   propStyles,
   onFalsePress,
   onTruePress,
+  questionOpacity,
 }) => {
   return (
     <CardView style={[styles.card, propStyles]}>
-      <Animated.View style={}>
+      <Animated.View style={{opacity: questionOpacity}}>
         <BasicText color={Colors.black} center size={26}>
           {question.question}
         </BasicText>

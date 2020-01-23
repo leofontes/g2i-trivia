@@ -77,6 +77,7 @@ const BasicText: FunctionComponent<Props> = ({
   medium,
   bold,
   black,
+  style,
 }) => (
   <Text
     style={[
@@ -89,6 +90,7 @@ const BasicText: FunctionComponent<Props> = ({
       },
       resolveAlignment({center, justify, right, left}),
       resolveFont({extraLight, light, regular, medium, bold, black}),
+      style,
     ]}>
     {children}
   </Text>
@@ -96,8 +98,9 @@ const BasicText: FunctionComponent<Props> = ({
 
 const styles = StyleSheet.create({
   default: {
-    fontSize: 16,
     color: Colors.black,
+    fontSize: 16,
+    margin: 0,
   },
   txtCenter: {textAlign: 'center'},
   txtJustify: {textAlign: 'justify'},
