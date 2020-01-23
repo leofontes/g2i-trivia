@@ -8,6 +8,7 @@ import BasicText from '../../components/basic/BasicText'
 import {useSelector, useDispatch} from 'react-redux'
 import {ApplicationState} from '../../utils/store'
 import {loadQuiz} from '../../store/quiz/actions'
+import CardView from '../../components/basic/CardView'
 
 export default () => {
   const {status} = useSelector((state: ApplicationState) => state.quiz)
@@ -30,30 +31,34 @@ export default () => {
     <SafeArea>
       <ScrollView contentContainerStyle={styles.scroll}>
         <View style={styles.content}>
-          <View style={styles.labelsContainer}>
-            <BasicText center black size={28} color={Colors.blueAqua}>
-              Welcome to the Trivia Challenge!
+          <CardView style={styles.card}>
+            <BasicText
+              center
+              bold
+              size={30}
+              color={Colors.blueAqua}
+              style={styles.welcomeLabel}>
+              {`Welcome to the\nTrivia Challenge!`}
             </BasicText>
-            <View style={styles.middleLabelContainer}>
-              <BasicText center regular size={32} color={Colors.pink}>
-                You will be presented with 10 True or False questions.
-              </BasicText>
-            </View>
+            <View style={styles.separator} />
+            <BasicText center light size={32} color={Colors.pink} style={styles.descLabel}>
+              You will be presented with 10 True or False questions.
+            </BasicText>
             <BasicText
               center
               regular
               size={32}
-              color={Colors.blueAqua}
+              color={Colors.yellowLime}
               style={styles.questionLabel}>
               Can you score 100%?
             </BasicText>
-          </View>
+          </CardView>
         </View>
         <Button
           label="BEGIN"
           onPress={onBeginPress}
-          labelColor={Colors.white}
-          bgColor={Colors.blueAqua}
+          labelColor={Colors.blueAqua}
+          bgColor={Colors.black}
           width={200}
           style={styles.buttonBegin}
           loading={status === 'loading'}
@@ -73,17 +78,25 @@ const styles = StyleSheet.create({
     flexGrow: 2,
     justifyContent: 'center',
   },
-
-  labelsContainer: {
-    paddingHorizontal: 50,
+  card: {
+    backgroundColor: Colors.black,
+    margin: 16,
   },
-  middleLabelContainer: {
-    paddingVertical: 25,
-    marginBottom: 50,
-    marginTop: 50,
+
+  welcomeLabel: {
+    marginVertical: 16,
+  },
+  separator: {
+    backgroundColor: Colors.yellowLime,
+    height: 2,
+  },
+  descLabel: {
+    marginVertical: 16,
+    paddingHorizontal: 8,
   },
 
   questionLabel: {
+    marginVertical: 16,
     textDecorationLine: 'underline',
   },
 
