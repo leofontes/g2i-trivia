@@ -5,15 +5,14 @@ export const ENDPOINT = 'https://opentdb.com/api.php'
 export type QueryParams = {[s: string]: string | number | number[]}
 
 export async function get(params?: QueryParams, host: string = ENDPOINT) {
-  // const url = `${host}${buildQuery(params)}`
-  const url =
-    'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean'
+  const url = `${host}${buildQuery(params)}`
   const response = await fetch(url)
 
   if (!response.ok) {
     const body = await response.text()
-    // throw new RestException(response.statusText)
-    //TODO handle error
+    return {
+      error: body,
+    }
   }
 
   return response.json()

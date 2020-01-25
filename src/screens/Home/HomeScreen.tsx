@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {ScrollView, StyleSheet, View} from 'react-native'
+import {ScrollView, StyleSheet, View, Alert} from 'react-native'
 import {useNavigation} from 'react-navigation-hooks'
 import SafeArea from '../../components/basic/SafeArea'
 import Button from '../../components/basic/Button'
@@ -23,7 +23,23 @@ export default () => {
     if (status === 'success') {
       navigate('Quiz')
     } else if (status === 'error') {
-      //TODO alert
+      Alert.alert(
+        'Something went wrong',
+        'There was an error processing your request',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Try again',
+            style: 'default',
+            onPress: () => {
+              dispatch(loadQuiz(10, 'hard', 'boolean'))
+            },
+          },
+        ],
+      )
     }
   }
 

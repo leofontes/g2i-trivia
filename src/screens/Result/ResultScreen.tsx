@@ -8,10 +8,12 @@ import {ApplicationState} from '../../utils/store'
 import {getConfettiAmount, getScoreString} from '../../business/QuizBusiness'
 import ResultList from '../../components/compound/ResultList'
 import Button from '../../components/basic/Button'
+import {NavigationActions, StackActions} from 'react-navigation'
 import {useNavigation} from 'react-navigation-hooks'
 import ConfettiCannon from 'react-native-confetti-cannon'
 import CardView from '../../components/basic/CardView'
 import ProgressBar from '../../components/compound/ProgressBar'
+import {useBackButton} from '../../utils/hooks'
 
 export default () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -24,10 +26,24 @@ export default () => {
   >(new Animated.Value(1))
   const [confettiAmount, setConfettiAmount] = useState(0)
   const {questions} = useSelector((state: ApplicationState) => state.quiz)
-  const {navigate} = useNavigation()
+  const {dispatch} = useNavigation()
+  useBackButton(() => {
+    dispatch(
+      StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({routeName: 'Home'})],
+      }),
+    )
+    return true
+  })
 
   const onPlayAgainButtonPress = () => {
-    navigate('Home')
+    dispatch(
+      StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({routeName: 'Home'})],
+      }),
+    )
   }
 
   const onProgressBarComplete = () => {
@@ -84,6 +100,7 @@ export default () => {
           labelColor={Colors.blueAqua}
           bgColor={Colors.black}
           width={200}
+          style={styles.button}
         />
       </Animated.View>
 
@@ -117,5 +134,8 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     margin: 16,
+  },
+  button: {
+    marginBottom: 16,
   },
 })

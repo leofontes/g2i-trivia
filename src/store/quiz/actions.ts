@@ -57,11 +57,15 @@ export function loadQuiz(
       }
 
       const response: QuizFetchResult = await get(queryParams)
-      const results = response.results.map(result => ({
-        ...result,
-        question: decodeHTMLEntities(result.question),
-      }))
-      dispatch(quizSuccessFetchAction(results))
+      if (response.error) {
+        dispatch(quizErrorFetchAction())
+      } else {
+        const results = response.results.map(result => ({
+          ...result,
+          question: decodeHTMLEntities(result.question),
+        }))
+        dispatch(quizSuccessFetchAction(results))
+      }
     } catch (err) {
       dispatch(quizErrorFetchAction())
     }
