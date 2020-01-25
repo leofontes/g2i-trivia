@@ -40,14 +40,5 @@ target 'TriviaG2Inc' do
   end
 
   use_native_modules!
-end
-
-target 'TriviaG2Inc-tvOS' do
-  # Pods for TriviaG2Inc-tvOS
-
-  target 'TriviaG2Inc-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 
 end
