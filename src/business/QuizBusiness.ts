@@ -5,7 +5,6 @@ export function mapAnswersToQuestions(
   questions: Question[],
   answers: Boolean[],
 ): Question[] {
-
   return questions.map((question, index) => {
     const correctAnswer = question.correct_answer === 'True'
 
@@ -20,6 +19,14 @@ export function mapAnswersToQuestions(
 }
 
 export function getScoreString(questions: Question[]): string {
+  return `You scored\n${calculateScore(questions)} / ${questions.length}`
+}
+
+export function getConfettiAmount(questions: Question[]): number {
+  return calculateScore(questions) * 25
+}
+
+function calculateScore(questions: Question[]): number {
   let score = 0
 
   questions.forEach(question => {
@@ -28,5 +35,5 @@ export function getScoreString(questions: Question[]): string {
     }
   })
 
-  return `You scored\n${score} / ${questions.length}`
+  return score
 }
